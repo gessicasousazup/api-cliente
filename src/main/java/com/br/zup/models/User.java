@@ -6,24 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 @Entity
 public class User implements Serializable {
-    private final static long serialVersionUID = 1L;
+	private final static long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank(message = "O campo Modo de preparo não pode ficar em branco")
-    private String nomeCompleto;
-	@NotBlank(message = "O campo idade não pode ficar em branco")
-	private String idade;
-    private String telefone;
-    private String cpf;
-    private String email;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String fullName;
+	private String age;
+	private String phone;
+	private String cpf;
+	private String email;
 
 	public User() {
 	}
@@ -36,28 +32,28 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeCompleto() {
-		return nomeCompleto;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getidade(){
-		return idade;
+	public String getAge() {
+		return age;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+	public void setAge(String age) {
+		this.age = age;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getCpf() {
