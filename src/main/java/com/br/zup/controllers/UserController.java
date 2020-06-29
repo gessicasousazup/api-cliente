@@ -14,72 +14,64 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.br.zup.models.Receita;
-import com.br.zup.services.ReceitaService;
+import com.br.zup.models.User;
+import com.br.zup.services.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/receitas")
-public class ReceitaController {
+@RequestMapping("/api/clientes")
+public class UserController {
 
 	@Autowired
-	private ReceitaService receitaService;
+	private UserService userService;
 
-	// C
-	@PostMapping("/")
-	public ResponseEntity<?> criaReceitas(@Valid @RequestBody Receita receita) {
+	@PostMapping
+	public ResponseEntity<?> criaUser(@Valid @RequestBody User user) {
 		try {
-			receitaService.criarReceita(receita);
-			return ResponseEntity.status(HttpStatus.CREATED).body(receita);
+			userService.criarUser(user);
+			return ResponseEntity.status(HttpStatus.CREATED).body(user);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 
 	}
 
-	// R
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> exibirTodos() {
 		try {
-			return ResponseEntity.ok().body(receitaService.pegarTodasReceitas());
-
+			return ResponseEntity.ok().body(userService.pegarTodasUser());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> pegarReceita(@PathVariable int id) {
+	public ResponseEntity<?> pegarUser(@PathVariable Long id) {
 		try {
-			Receita receita = receitaService.pegarReceitaPeloId(id);
-			return ResponseEntity.ok(receita);
+			User user = userService.pegarUserPeloId(id);
+			return ResponseEntity.ok(user);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
 
-	// U
 	@PutMapping("/{id}")
-	public ResponseEntity<?> atualizarReceita(@PathVariable int id, @RequestBody Receita receita) {
-
+	public ResponseEntity<?> atualizarUser(@PathVariable Long id, @RequestBody User user) {
 		try {
-
-			return ResponseEntity.ok().body(receitaService.atualizarReceita(id, receita));
-
+			return ResponseEntity.ok().body(userService.atualizarUser(id, user));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 
 	}
 
-	// D
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> excluirReceita(@PathVariable int id) {
+	public ResponseEntity<?> excluirUser(@PathVariable Long id) {
 		try {
-			receitaService.excluirReceita(id);
+			userService.excluirUser(id);
 			return ResponseEntity.ok().build();
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
 

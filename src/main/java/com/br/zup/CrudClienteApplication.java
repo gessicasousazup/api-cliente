@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CanalCulinariaAppApplication {
+class CrudClienteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CanalCulinariaAppApplication.class, args);
+		SpringApplication.run(CrudClienteApplication.class, args);
 	}
 
 }
