@@ -1,25 +1,29 @@
-package com.br.zup.entity.dto;
+package com.br.zup.entity.model;
 
-import com.br.zup.entity.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.modelmapper.ModelMapper;
+
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
     private String age;
     private String phone;
     private String cpf;
     private String email;
+    private boolean admin;
 
-    public static UserDTO create(User user){
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(user, UserDTO.class);
+    @PrePersist
+    private void onCreate(){
+        this.admin = false;
     }
-
 }
