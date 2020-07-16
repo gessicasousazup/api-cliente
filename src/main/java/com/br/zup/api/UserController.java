@@ -18,19 +18,19 @@ public class UserController {
     private UserService userService;
 
     @GetMapping()
-    public ResponseEntity get() {
+    public ResponseEntity getUsers() {
         List<UserDTO> users = userService.getUsers();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity get(@PathVariable("id") Long id) {
+    public ResponseEntity getIdUsers(@PathVariable("id") Long id) {
         UserDTO userDTO = userService.getUserById(id);
         return ResponseEntity.ok(userDTO);
     }
 
     @PostMapping
-    public ResponseEntity post(@RequestBody User user) {
+    public ResponseEntity postUsers(@RequestBody User user) {
         UserDTO userDTO = userService.createUser(user);
         URI location = getUri(userDTO.getId());
         return ResponseEntity.created(location).build();

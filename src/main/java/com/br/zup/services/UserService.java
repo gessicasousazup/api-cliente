@@ -5,14 +5,8 @@ import com.br.zup.entity.dto.UserDTO;
 import com.br.zup.entity.model.User;
 import com.br.zup.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,8 +23,8 @@ public class UserService {
     }
 
     public List<UserDTO> getUsers() {
-        List<UserDTO> list = userRepository.findAll().stream().map(UserDTO::create).collect(Collectors.toList());
-        return list;
+        List<UserDTO> listUsers = userRepository.findAll().stream().map(UserDTO::create).collect(Collectors.toList());
+        return listUsers;
     }
 
     public UserDTO getUserById(Long id) {
@@ -58,7 +52,6 @@ public class UserService {
             return null;
         }
     }
-
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
